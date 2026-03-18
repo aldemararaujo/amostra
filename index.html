@@ -52,7 +52,7 @@
             animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* Tema Escuro (Dark Mode) Override - Mapeamento de Classes */
+        /* Tema Escuro (Dark Mode) Override */
         html.dark body { background-color: #0f172a; color: #f1f5f9; }
         html.dark .bg-slate-50 { background-color: #0f172a; }
         html.dark .bg-white { background-color: #1e293b; border-color: #334155; }
@@ -68,38 +68,21 @@
         html.dark .hover\:bg-slate-50:hover { background-color: #0f172a; }
         html.dark .hover\:bg-slate-300:hover { background-color: #64748b; }
         
-        /* Tema Escuro - Cores de Status e Componentes */
         html.dark .bg-indigo-50 { background-color: rgba(79, 70, 229, 0.15); border-color: rgba(79, 70, 229, 0.3); }
-        html.dark .border-indigo-200 { border-color: rgba(79, 70, 229, 0.4); }
         html.dark .text-indigo-700 { color: #a5b4fc; }
-        html.dark .text-indigo-600 { color: #818cf8; }
         html.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.1); }
-        html.dark .border-amber-100 { border-color: rgba(245, 158, 11, 0.2); }
-        html.dark .border-amber-200 { border-color: rgba(245, 158, 11, 0.3); }
-        html.dark .bg-amber-100 { background-color: rgba(245, 158, 11, 0.2); }
         html.dark .text-amber-800 { color: #fcd34d; }
-        html.dark .text-amber-700 { color: #fbbf24; }
-        html.dark .text-amber-600 { color: #f59e0b; }
         html.dark .bg-red-50 { background-color: rgba(239, 68, 68, 0.1); }
-        html.dark .border-red-100 { border-color: rgba(239, 68, 68, 0.2); }
-        html.dark .border-red-200 { border-color: rgba(239, 68, 68, 0.3); }
         html.dark .text-red-700 { color: #f87171; }
-        html.dark .text-red-600 { color: #ef4444; }
         html.dark .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.1); }
-        html.dark .border-emerald-200 { border-color: rgba(16, 185, 129, 0.3); }
         html.dark .text-emerald-700 { color: #34d399; }
-        html.dark .text-emerald-600 { color: #10b981; }
-        html.dark .bg-blue-100 { background-color: rgba(59, 130, 246, 0.2); }
-        html.dark .text-blue-800 { color: #93c5fd; }
-        html.dark .bg-emerald-100 { background-color: rgba(16, 185, 129, 0.2); }
-        html.dark .text-emerald-800 { color: #6ee7b7; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen pb-12 transition-colors duration-300">
 
     <div class="max-w-6xl mx-auto p-4 md:p-6 relative">
         
-        <!-- Botão de Tema (Claro/Escuro) -->
+        <!-- Botão de Tema -->
         <button onclick="toggleTheme()" class="absolute top-4 right-4 md:top-6 md:right-6 p-3 rounded-full bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-indigo-500 transition-all z-20" title="Alternar Tema Claro/Escuro">
             <i id="theme-icon" class="fas fa-moon text-xl"></i>
         </button>
@@ -107,7 +90,7 @@
         <!-- Header -->
         <header class="mb-8 text-center pt-8 md:pt-0">
             <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Entendendo a Amostragem</h1>
-            <p class="text-slate-600 max-w-2xl mx-auto">Selecione um método de amostragem abaixo para ver como ele funciona na prática, conheça suas sinonímias e descubra a "dor" (riscos e vieses) associada a cada escolha.</p>
+            <p class="text-slate-600 max-w-2xl mx-auto">Simulador prático para escolha de métodos, identificação de riscos e redação de justificativas metodológicas.</p>
         </header>
 
         <!-- Main Layout -->
@@ -120,7 +103,7 @@
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
                     <h2 class="font-semibold text-lg mb-3 flex items-center gap-2">
                         <i class="fas fa-filter text-indigo-500"></i> Categorias
-                        <i class="fas fa-question-circle text-slate-300 hover:text-indigo-500 cursor-pointer text-sm ml-auto transition-colors" onclick="openHelp('categories')" title="Como usar"></i>
+                        <i class="fas fa-question-circle text-slate-300 hover:text-indigo-500 cursor-pointer text-sm ml-auto transition-colors" onclick="openHelp('categories')"></i>
                     </h2>
                     <div class="flex flex-col sm:flex-row gap-2">
                         <button onclick="setCategory('probabilistic')" id="btn-cat-prob" class="flex-1 py-2 px-3 bg-indigo-600 text-white rounded-lg text-sm font-medium transition-colors w-full">Probabilística</button>
@@ -132,18 +115,14 @@
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
                     <h2 class="font-semibold text-lg mb-3 flex items-center gap-2" id="subtype-title">
                         <i class="fas fa-list-ul text-indigo-500"></i> Métodos
-                        <i class="fas fa-question-circle text-slate-300 hover:text-indigo-500 cursor-pointer text-sm ml-auto transition-colors" onclick="openHelp('methods')" title="Como usar"></i>
                     </h2>
-                    <div id="subtypes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <!-- Botões injetados via JS -->
-                    </div>
+                    <div id="subtypes-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
                 </div>
 
                 <!-- Configurações Adicionais -->
                 <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
                     <h2 class="font-semibold text-lg mb-3 flex items-center gap-2">
                         <i class="fas fa-sliders-h text-slate-500"></i> Ajustes da Simulação
-                        <i class="fas fa-question-circle text-slate-300 hover:text-slate-600 cursor-pointer text-sm ml-auto transition-colors" onclick="openHelp('settings')" title="Como usar"></i>
                     </h2>
                     <div class="flex flex-col gap-4">
                         <div>
@@ -151,7 +130,6 @@
                                 Tamanho da Amostra (n) <span id="sample-size-display" class="font-bold text-indigo-600 bg-indigo-50 px-2 rounded">20</span>
                             </label>
                             <input type="range" id="sample-size-slider" min="8" max="40" step="4" value="20" class="w-full mt-2 accent-indigo-600 cursor-pointer" oninput="updateSampleSize(this.value)">
-                            <p class="text-[10px] text-slate-400 mt-1">Altere para ver como o tamanho impacta a representatividade.</p>
                         </div>
                         <button onclick="shufflePopulation()" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition-colors border border-slate-300 flex items-center justify-center gap-2">
                             <i class="fas fa-random text-slate-500"></i> Embaralhar População
@@ -159,23 +137,23 @@
                     </div>
                 </div>
 
-                <!-- Botão Executar (Posicionado aqui para nunca ficar escondido) -->
-                <button onclick="executeSampling()" class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 border border-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-500/50 transform hover:-translate-y-1">
+                <!-- Botão Executar -->
+                <button onclick="executeSampling()" class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 border border-emerald-600 transform hover:-translate-y-1">
                     <i class="fas fa-play-circle text-2xl"></i> Executar Amostragem
                 </button>
 
-                <!-- Quadro de Teoria e "Dor" -->
+                <!-- Quadro de Teoria -->
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                     <div class="p-4 bg-slate-100 border-b border-slate-200">
                         <h3 id="info-name" class="text-xl font-bold text-slate-800">Selecione um método</h3>
-                        <p class="text-xs text-slate-500 mt-1 font-medium uppercase tracking-wider">Sinonímias: <span id="info-synonyms" class="font-normal text-slate-700">,</span></p>
+                        <p class="text-xs text-slate-500 mt-1 font-medium uppercase tracking-wider">Sinonímias: <span id="info-synonyms" class="font-normal text-slate-700"></span></p>
                     </div>
                     <div class="p-4 flex flex-col gap-4">
                         <div>
                             <h4 class="text-sm font-bold text-slate-700 flex items-center gap-1 mb-1">
                                 <i class="fas fa-book-open text-blue-500"></i> O que é?
                             </h4>
-                            <p id="info-desc" class="text-sm text-slate-600">Selecione um método acima para ler sua descrição.</p>
+                            <p id="info-desc" class="text-sm text-slate-600">Descrição aparecerá aqui.</p>
                         </div>
                         <div class="bg-red-50 p-3 rounded-lg border border-red-100">
                             <h4 class="text-sm font-bold text-red-700 flex items-center gap-1 mb-1">
@@ -191,22 +169,18 @@
             <div class="w-full lg:w-7/12 flex flex-col gap-4">
                 
                 <div class="flex flex-col sm:flex-row gap-4 h-full">
-                    
                     <!-- População Original -->
                     <div class="flex-1 bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="font-semibold text-lg flex items-center gap-2">
                                 <i class="fas fa-users text-blue-500"></i> População Total
-                                <i class="fas fa-question-circle text-slate-300 hover:text-blue-500 cursor-pointer text-sm transition-colors" onclick="openHelp('population')" title="Como usar"></i>
                             </h2>
                             <span class="text-xs bg-slate-100 text-slate-600 py-1 px-2 rounded-full font-mono">N=100</span>
                         </div>
                         <div class="flex-grow flex items-center justify-center bg-slate-50 rounded-lg p-2 border border-slate-100">
-                            <div id="population-grid" class="w-full max-w-[250px] aspect-square">
-                                <!-- Dots injetados via JS -->
-                            </div>
+                            <div id="population-grid" class="w-full max-w-[250px] aspect-square"></div>
                         </div>
-                        <div class="mt-3 flex justify-center flex-wrap gap-2 sm:gap-3 text-xs text-slate-500">
+                        <div class="mt-3 flex justify-center flex-wrap gap-2 text-xs text-slate-500">
                             <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-red-500"></span> 25%</span>
                             <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 25%</span>
                             <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 25%</span>
@@ -218,36 +192,29 @@
                     <div class="flex-1 bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="font-semibold text-lg flex items-center gap-2">
-                                <i class="fas fa-crosshairs text-emerald-500"></i> Amostra Resultante
-                                <i class="fas fa-question-circle text-slate-300 hover:text-emerald-500 cursor-pointer text-sm transition-colors" onclick="openHelp('sample')" title="Como usar"></i>
+                                <i class="fas fa-crosshairs text-emerald-500"></i> Amostra Extraída
                             </h2>
                             <span id="sample-size-badge" class="text-xs bg-slate-100 text-slate-600 py-1 px-2 rounded-full font-mono">n=20</span>
                         </div>
                         <div class="flex-grow bg-slate-50 rounded-lg p-4 border border-slate-100 overflow-hidden relative">
                             <div id="sample-grid" class="w-full h-full">
-                                <!-- Pontos amostrados aparecerão aqui -->
                                 <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-sm text-center p-4" id="sample-placeholder">
-                                    Clique em "Executar Amostragem" para ver os indivíduos selecionados.
+                                    Aguardando execução...
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Diagnóstico / Termômetro -->
+                <!-- Diagnóstico -->
                 <div id="diagnostics-panel" class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 hidden">
                     <h3 class="font-semibold text-slate-800 mb-2 flex items-center gap-2">
                         <i class="fas fa-stethoscope text-slate-600"></i> Diagnóstico de Representatividade
-                        <i class="fas fa-question-circle text-slate-300 hover:text-slate-600 cursor-pointer text-sm transition-colors ml-auto" onclick="openHelp('diagnosis')" title="Como usar"></i>
                     </h3>
                     <div class="flex items-center gap-4">
-                        <div class="flex-1 h-4 bg-slate-200 rounded-full overflow-hidden flex" id="distribution-bar">
-                            <!-- Preenchido via JS -->
-                        </div>
+                        <div class="flex-1 h-4 bg-slate-200 rounded-full overflow-hidden flex" id="distribution-bar"></div>
                     </div>
                     <p id="diagnostics-message" class="text-sm mt-3 font-medium text-slate-700"></p>
-                    
-                    <!-- Tabela Comparativa -->
                     <div class="mt-4 bg-white rounded border border-slate-200 overflow-x-auto w-full">
                         <table class="w-full text-xs text-left min-w-[300px]">
                             <thead class="bg-slate-50 border-b border-slate-200 text-slate-600">
@@ -257,178 +224,218 @@
                                     <th class="px-3 py-2 font-semibold">Capturado (Amostra)</th>
                                 </tr>
                             </thead>
-                            <tbody id="comparison-table-body">
-                                <!-- Preenchido via JS -->
-                            </tbody>
+                            <tbody id="comparison-table-body"></tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <!-- Dicas de Ouro -->
-        <section class="mb-12 bg-amber-50 border border-amber-200 rounded-xl p-4 sm:p-6 shadow-sm">
+        <section class="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-6 shadow-sm">
             <h2 class="text-xl font-bold text-amber-800 mb-4 flex items-center gap-2">
                 <i class="fas fa-lightbulb text-amber-500"></i> Dicas de Ouro
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-white p-4 rounded-lg border border-amber-100 shadow-sm flex items-start gap-3">
                     <div class="bg-amber-100 text-amber-600 rounded-full w-8 h-8 flex items-center justify-center shrink-0 font-bold">1</div>
-                    <p class="text-sm text-slate-700 leading-relaxed">A técnica de amostragem é a parte <strong>qualitativa</strong> da amostra e o tamanho da amostra é a parte <strong>quantitativa</strong>.</p>
+                    <p class="text-sm text-slate-700">A técnica de amostragem é a parte <strong>qualitativa</strong> da amostra e o tamanho da amostra é a parte <strong>quantitativa</strong>.</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg border border-amber-100 shadow-sm flex items-start gap-3">
                     <div class="bg-amber-100 text-amber-600 rounded-full w-8 h-8 flex items-center justify-center shrink-0 font-bold">2</div>
-                    <p class="text-sm text-slate-700 leading-relaxed">A amostragem determina a <strong>representatividade</strong> da amostra, para permitir generalizar (inferência) os resultados.</p>
+                    <p class="text-sm text-slate-700">A amostragem determina a <strong>representatividade</strong> da amostra, permitindo generalizar resultados.</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg border border-amber-100 shadow-sm flex items-start gap-3">
                     <div class="bg-amber-100 text-amber-600 rounded-full w-8 h-8 flex items-center justify-center shrink-0 font-bold">3</div>
-                    <p class="text-sm text-slate-700 leading-relaxed">A informação mais importante para determinar a amostragem é a característica clínica do participante de pesquisa, se ele apresenta um evento <strong>agudo</strong> (amostra não probabilística) ou um evento <strong>crônico</strong> (amostra probabilística).</p>
+                    <p class="text-sm text-slate-700">Eventos <strong>agudos</strong> costumam exigir amostras não probabilísticas, enquanto eventos <strong>crônicos</strong> favorecem a probabilística.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Referências Científicas -->
+        <!-- CARD DE ORIENTAÇÃO AO PESQUISADOR (NOVO) -->
+        <section class="mb-12 bg-indigo-50 border border-indigo-200 rounded-xl p-6 shadow-sm">
+            <h2 class="text-xl font-bold text-indigo-800 mb-2 flex items-center gap-2">
+                <i class="fas fa-pen-nib text-indigo-500"></i> Guia de Redação e Justificativa
+            </h2>
+            <p class="text-sm text-indigo-700 mb-6">Como descrever e fundamentar o método selecionado no seu relatório ou artigo científico.</p>
+            
+            <div class="bg-white rounded-lg border border-indigo-100 overflow-hidden">
+                <div class="p-4 bg-indigo-100/50 border-b border-indigo-100">
+                    <h3 id="writer-method-name" class="font-bold text-indigo-900">Selecione um método acima</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-5 border-b md:border-b-0 md:border-r border-indigo-50">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <i class="fas fa-align-left text-indigo-400"></i> Sugestão de Redação (O Quê)
+                        </h4>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 relative group">
+                            <p id="writer-text-what" class="text-sm text-slate-700 italic leading-relaxed">
+                                Selecione um método para ver o modelo de texto.
+                            </p>
+                            <button onclick="copyToClipboard('writer-text-what')" class="absolute top-2 right-2 p-2 bg-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-indigo-600" title="Copiar texto">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                            <i class="fas fa-balance-scale text-indigo-400"></i> Justificativa Teórica (Por Quê)
+                        </h4>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 relative group">
+                            <p id="writer-text-why" class="text-sm text-slate-700 leading-relaxed">
+                                Selecione um método para ver a fundamentação.
+                            </p>
+                            <button onclick="copyToClipboard('writer-text-why')" class="absolute top-2 right-2 p-2 bg-white rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-indigo-600" title="Copiar texto">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-4 text-[11px] text-indigo-400 flex items-center gap-1">
+                <i class="fas fa-info-circle"></i> Lembre-se de adaptar os termos entre colchetes [ ] à realidade do seu estudo.
+            </p>
+        </section>
+
+        <!-- Referências Científicas -->
         <section class="mt-8">
             <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2 flex items-center gap-2">
-                <i class="fas fa-graduation-cap text-indigo-600"></i> Referências Científicas Recomendadas
+                <i class="fas fa-graduation-cap text-indigo-600"></i> Referências Recomendadas
             </h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Referência 1 -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col h-full">
-                    <div class="mb-3">
-                        <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">Base Teórica</span>
-                    </div>
-                    <h3 class="font-bold text-slate-800 leading-tight mb-2">Tamanho da amostra em estudos clínicos e experimentais</h3>
-                    <p class="text-xs text-slate-500 mb-3 font-medium">Miot, H. A. (2011) , Jornal Vascular Brasileiro.</p>
-                    <p class="text-sm text-slate-600 flex-grow mb-4">
-                        <strong>Importância:</strong> Leitura fundamental para compreender a matemática básica por trás da amostragem probabilística. O autor explica de forma muito didática como o planejamento correto da amostra evita erros sistemáticos e o perigoso viés de seleção na pesquisa científica quantitativa.
-                    </p>
-                    <a href="https://www.scielo.br/j/jvb/a/Dxg84WBMPnNrVcpKMXyVfHd/?lang=pt" target="_blank" class="text-sm text-indigo-600 font-semibold hover:text-indigo-800 flex items-center gap-1 mt-auto">
-                        Acessar Artigo (SciELO) <i class="fas fa-external-link-alt text-[10px]"></i>
-                    </a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 flex flex-col h-full">
+                    <span class="bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded uppercase mb-3 inline-block w-fit">Base Teórica</span>
+                    <h3 class="font-bold text-slate-800 leading-tight mb-2">Tamanho da amostra em estudos clínicos...</h3>
+                    <p class="text-xs text-slate-500 mb-3 font-medium">Miot, H. A. (2011), Jornal Vascular Brasileiro.</p>
+                    <a href="https://www.scielo.br/j/jvb/a/Dxg84WBMPnNrVcpKMXyVfHd/?lang=pt" target="_blank" class="text-sm text-indigo-600 font-semibold mt-auto flex items-center gap-1">Artigo <i class="fas fa-external-link-alt text-[10px]"></i></a>
                 </div>
-
-                <!-- Referência 2 -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col h-full">
-                    <div class="mb-3">
-                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">Aplicação Prática</span>
-                    </div>
-                    <h3 class="font-bold text-slate-800 leading-tight mb-2">Inquéritos nacionais de saúde: visão geral sobre técnicas de amostragem...</h3>
-                    <p class="text-xs text-slate-500 mb-3 font-medium">Szwarcwald, C. L. et al. (2023) , Epidemiologia e Serviços de Saúde.</p>
-                    <p class="text-sm text-slate-600 flex-grow mb-4">
-                        <strong>Importância:</strong> Este artigo mostra a teoria aplicada na vida real. Ele detalha exatamente como os grandes institutos no Brasil misturam amostragens estratificadas e por conglomerados para conseguir estudar um país continental garantindo alta representatividade estatística.
-                    </p>
-                    <a href="https://www.scielosp.org/article/ress/2023.v32n3/e2023431/pt/" target="_blank" class="text-sm text-indigo-600 font-semibold hover:text-indigo-800 flex items-center gap-1 mt-auto">
-                        Acessar Artigo (SciELO) <i class="fas fa-external-link-alt text-[10px]"></i>
-                    </a>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 flex flex-col h-full">
+                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-1 rounded uppercase mb-3 inline-block w-fit">Aplicação</span>
+                    <h3 class="font-bold text-slate-800 leading-tight mb-2">Inquéritos nacionais de saúde: amostragem...</h3>
+                    <p class="text-xs text-slate-500 mb-3 font-medium">Szwarcwald, C. L. et al. (2023), Epidemiologia.</p>
+                    <a href="https://www.scielosp.org/article/ress/2023.v32n3/e2023431/pt/" target="_blank" class="text-sm text-indigo-600 font-semibold mt-auto flex items-center gap-1">Artigo <i class="fas fa-external-link-alt text-[10px]"></i></a>
                 </div>
-
-                <!-- Referência 3 -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col h-full">
-                    <div class="mb-3">
-                        <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">Amostragem Não Probabilística</span>
-                    </div>
-                    <h3 class="font-bold text-slate-800 leading-tight mb-2">Amostragem em pesquisas qualitativas: proposta de procedimentos...</h3>
-                    <p class="text-xs text-slate-500 mb-3 font-medium">Fontanella, B. J. B. et al. (2011) , Cadernos de Saúde Pública.</p>
-                    <p class="text-sm text-slate-600 flex-grow mb-4">
-                        <strong>Importância:</strong> Essencial para entender o outro lado da moeda. Aborda as amostras não probabilísticas (como intencional e bola de neve) e explica o conceito de "saturação teórica", ou seja, como os pesquisadores sabem a hora exata de parar de coletar dados quando não há um sorteio estatístico.
-                    </p>
-                    <a href="https://www.scielo.br/j/csp/a/3bsWNzMMdvYthrNCXmY9kJQ/?lang=pt" target="_blank" class="text-sm text-indigo-600 font-semibold hover:text-indigo-800 flex items-center gap-1 mt-auto">
-                        Acessar Artigo (SciELO) <i class="fas fa-external-link-alt text-[10px]"></i>
-                    </a>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 flex flex-col h-full">
+                    <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-1 rounded uppercase mb-3 inline-block w-fit">Qualitativa</span>
+                    <h3 class="font-bold text-slate-800 leading-tight mb-2">Amostragem em pesquisas qualitativas...</h3>
+                    <p class="text-xs text-slate-500 mb-3 font-medium">Fontanella, B. J. B. et al. (2011), Cadernos SP.</p>
+                    <a href="https://www.scielo.br/j/csp/a/3bsWNzMMdvYthrNCXmY9kJQ/?lang=pt" target="_blank" class="text-sm text-indigo-600 font-semibold mt-auto flex items-center gap-1">Artigo <i class="fas fa-external-link-alt text-[10px]"></i></a>
                 </div>
             </div>
         </section>
 
-        <!-- Rodapé Institucional -->
-        <footer class="mt-16 pt-8 border-t border-slate-200 text-center text-slate-500 text-sm">
-            <p>&copy; 2026 Aldemar Araujo Castro.</p>
-            <p class="mt-2 text-xs">Material de apoio da disciplina de pesquisa em ciências da saúde da Universidade Estadual de Ciências da Saúde de Alagoas (UNCISAL), Maceió, Alagoas, Brasil.</p>
+        <footer class="mt-16 pt-8 border-t border-slate-200 text-center text-slate-500 text-xs">
+            <p>&copy; 2026 Aldemar Araujo Castro. Disciplina de Pesquisa, UNCISAL, Alagoas, Brasil.</p>
         </footer>
-
     </div>
 
-    <!-- Modal de Ajuda -->
-    <div id="help-modal" class="fixed inset-0 bg-slate-900 bg-opacity-50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
-        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative animate-pop max-h-[90vh] overflow-y-auto">
-            <button onclick="closeHelp()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors">
+    <!-- Modal Ajuda -->
+    <div id="help-modal" class="fixed inset-0 bg-slate-900 bg-opacity-50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative animate-pop">
+            <button onclick="closeHelp()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
                 <i class="fas fa-times text-xl"></i>
             </button>
-            <h3 id="help-title" class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2 pr-6"></h3>
-            <div id="help-content" class="text-slate-600 text-sm leading-relaxed space-y-3"></div>
+            <h3 id="help-title" class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2"></h3>
+            <div id="help-content" class="text-slate-600 text-sm leading-relaxed"></div>
         </div>
     </div>
 
     <script>
-        // Dados Teóricos
+        // Dados Teóricos e Modelos de Redação
         const methodsData = {
             'probabilistic': {
-                name: 'Amostragem Probabilística',
-                color: 'indigo',
                 subtypes: [
                     {
                         id: 'simple',
                         name: 'Aleatória Simples',
                         synonyms: 'Acaso Simples, Sorteio Puro',
                         desc: 'Todos os membros da população têm exatamente a mesma chance de serem sorteados. É como colocar todos os nomes em um chapéu e sortear às cegas.',
-                        pain: 'Requer uma lista prévia e completa de toda a população. Se a população for muito espalhada, a coleta de dados pode ficar caríssima e lenta.'
+                        pain: 'Requer uma lista prévia e completa de toda a população. Se a população for muito espalhada, a coleta de dados pode ficar caríssima e lenta.',
+                        writing: {
+                            what: 'A seleção dos participantes foi realizada por meio de amostragem probabilística aleatória simples, utilizando uma lista completa da população alvo e um gerador de números aleatórios para a extração da amostra final de [n] indivíduos.',
+                            why: 'Este método foi escolhido para garantir a validade estatística das inferências, assegurando que cada elemento da população tivesse a mesma probabilidade de seleção, eliminando vieses conscientes ou inconscientes do pesquisador.'
+                        }
                     },
                     {
                         id: 'systematic',
                         name: 'Sistemática',
                         synonyms: 'Acaso Sistemático, Intervalar',
-                        desc: 'Escolhe-se um ponto de partida aleatório e, em seguida, seleciona-se cada "k-ésimo" elemento da lista (ex: pegar 1 a cada 5 pessoas de uma fila).',
-                        pain: 'Risco de viés grave se a lista original possuir um padrão oculto ou ciclo que coincida com o intervalo de pulo.'
+                        desc: 'Escolhe-se um ponto de partida aleatório e, em seguida, seleciona-se cada "k-ésimo" elemento da lista.',
+                        pain: 'Risco de viés grave se a lista original possuir um padrão oculto ou ciclo que coincida com o intervalo de pulo.',
+                        writing: {
+                            what: 'Foi aplicada a amostragem sistemática, na qual, a partir de um início aleatório entre o 1º e o [kº] elemento, selecionou-se cada enésimo participante que [ingressava na unidade de saúde / constava na lista sequencial].',
+                            why: 'A escolha justifica-se pela facilidade operacional e logística, permitindo uma cobertura uniforme de toda a população quando esta se apresenta em ordem sequencial ou cronológica.'
+                        }
                     },
                     {
                         id: 'stratified',
                         name: 'Estratificada',
                         synonyms: 'Amostragem Proporcional',
-                        desc: 'A população é dividida em subgrupos (estratos) baseados em características, como idade ou cor. Depois, faz-se um sorteio dentro de cada grupo para garantir representatividade.',
-                        pain: 'Exige conhecimento prévio detalhado das características de toda a população para conseguir classificá-los corretamente nos estratos.'
+                        desc: 'A população é dividida em subgrupos (estratos). Depois, faz-se um sorteio dentro de cada grupo para garantir representatividade.',
+                        pain: 'Exige conhecimento prévio detalhado das características de toda a população para conseguir classificá-los corretamente.',
+                        writing: {
+                            what: 'A amostra foi estratificada com base na característica [especificar variável], garantindo que a composição da amostra final mantivesse a proporcionalidade observada na população original de [N] indivíduos.',
+                            why: 'Justifica-se pela necessidade de assegurar a representatividade de subgrupos específicos que, devido à sua menor frequência, poderiam ser sub-representados em um sorteio aleatório simples.'
+                        }
                     },
                     {
                         id: 'cluster',
                         name: 'Por Conglomerados',
                         synonyms: 'Amostragem por Áreas, Agrupamentos',
-                        desc: 'Divide a população em grandes blocos já existentes (como bairros ou escolas). Sorteiam-se alguns blocos inteiros e coleta-se dados de todos dentro deles.',
-                        pain: 'Alto risco de erro de generalização se os blocos sorteados forem muito homogêneos internamente e não representarem a diversidade do todo.'
+                        desc: 'Divide a população em blocos já existentes (bairros). Sorteiam-se alguns blocos e coleta-se dados de todos dentro deles.',
+                        pain: 'Alto risco de erro de generalização se os blocos sorteados forem muito homogêneos internamente.',
+                        writing: {
+                            what: 'Utilizou-se amostragem probabilística por conglomerados, sendo as unidades amostrais primárias definidas por [bairros/escolas/unidades], das quais foram sorteadas [X] unidades para coleta integral dos dados.',
+                            why: 'Este método foi selecionado devido à dispersão geográfica da população e para otimizar os recursos logísticos da pesquisa, tratando grupos naturais como unidades de sorteio.'
+                        }
                     }
                 ]
             },
             'non-probabilistic': {
-                name: 'Amostragem Não Probabilística',
-                color: 'slate',
                 subtypes: [
                     {
                         id: 'convenience',
                         name: 'Conveniência',
                         synonyms: 'Acidental, Sem Critério Científico',
-                        desc: 'Seleciona os indivíduos que estão mais acessíveis ou fáceis de recrutar no momento da pesquisa (ex: entrevistar pessoas que passam na rua).',
-                        pain: 'Alto grau de viés de seleção. Os resultados raramente podem ser generalizados para a população inteira. É o famoso "Acho que todos pensam como meus amigos".'
+                        desc: 'Seleciona os indivíduos que estão mais acessíveis ou fáceis de recrutar no momento.',
+                        pain: 'Alto grau de viés de seleção. Os resultados raramente podem ser generalizados para a população inteira.',
+                        writing: {
+                            what: 'A amostragem foi realizada de forma não probabilística por conveniência, incluindo os participantes que [estavam presentes no local de coleta / responderam voluntariamente ao convite] durante o período do estudo.',
+                            why: 'Justifica-se pelo caráter exploratório do estudo e pela impossibilidade de obter uma lista nominal completa da população, sendo a coleta ágil compatível com a natureza [aguda/transversal] do fenômeno investigado.'
+                        }
                     },
                     {
                         id: 'purposive',
                         name: 'Intencional',
                         synonyms: 'Por Julgamento, Dirigida',
-                        desc: 'O pesquisador usa seu próprio julgamento para escolher deliberadamente quem vai participar, buscando "especialistas" ou perfis específicos.',
-                        pain: 'Totalmente dependente do viés pessoal e da percepção do pesquisador. Se ele errar no julgamento, a pesquisa perde a validade.'
+                        desc: 'O pesquisador usa seu próprio julgamento para escolher deliberadamente quem vai participar.',
+                        pain: 'Totalmente dependente do viés pessoal e da percepção do pesquisador.',
+                        writing: {
+                            what: 'A seleção da amostra foi intencional (por julgamento), baseada em critérios pré-definidos para identificar participantes que possuíssem [conhecimento especializado / características clínicas raras] essenciais para o objeto de estudo.',
+                            why: 'Justifica-se pela necessidade de focar em casos ricos em informação que permitissem uma compreensão profunda do fenômeno, onde o sorteio aleatório poderia omitir perfis críticos para a análise.'
+                        }
                     },
                     {
                         id: 'quota',
                         name: 'Por Cotas',
                         synonyms: 'Estratificada Não Aleatória',
-                        desc: 'O pesquisador define cotas (ex: 5 homens e 5 mulheres), mas a escolha exata de quem vai preencher essas cotas é feita por conveniência, sem sorteio.',
-                        pain: 'Embora pareça representativa visualmente, falha por não usar sorteio. Pessoas mais tímidas ou distantes continuam sem chance de participar.'
+                        desc: 'Define cotas (ex: 5 homens), mas a escolha de quem preenche é feita por conveniência.',
+                        pain: 'Parece representativa visualmente, mas falha por não usar sorteio.',
+                        writing: {
+                            what: 'Foi aplicada amostragem por cotas, estabelecendo-se limites numéricos para os subgrupos de [variáveis], os quais foram preenchidos por recrutamento sequencial até o atingimento do n planejado.',
+                            why: 'Justifica-se pela tentativa de reproduzir a diversidade demográfica da população em um cenário onde o sorteio aleatório dentro de cada estrato era tecnicamente inviável.'
+                        }
                     },
                     {
                         id: 'snowball',
                         name: 'Bola de Neve',
                         synonyms: 'Em Rede, Referência em Cadeia',
-                        desc: 'Seleciona-se um pequeno grupo inicial que, após participar, indica seus conhecidos, que indicam outros, formando uma rede.',
-                        pain: 'A amostra tende a ser viciada porque as pessoas indicam amigos com pensamentos e perfis muito semelhantes aos delas mesmas.'
+                        desc: 'Um pequeno grupo inicial indica conhecidos, que indicam outros.',
+                        pain: 'A amostra tende a ser viciada porque as pessoas indicam amigos com perfis semelhantes.',
+                        writing: {
+                            what: 'Utilizou-se a técnica de amostragem bola de neve (snowball sampling), onde os participantes iniciais atuaram como informantes-chave, indicando novos membros pertencentes à rede social em questão.',
+                            why: 'Justifica-se pelo fato de a população alvo ser de difícil acesso ou constituir um grupo social [estigmatizado/fechado], dificultando a utilização de métodos tradicionais de recrutamento.'
+                        }
                     }
                 ]
             }
@@ -437,49 +444,32 @@
         let currentCategory = 'probabilistic';
         let currentSubtypeId = 'simple';
         let population = [];
-        const popSize = 100;
         let sampleSize = 20;
 
-        // Inicialização
         function init() {
             generatePopulation();
             setCategory('probabilistic');
         }
 
-        // Gera a população de 100 indivíduos (25 de cada cor)
         function generatePopulation() {
             const grid = document.getElementById('population-grid');
             grid.innerHTML = '';
             population = [];
-            
             const colors = ['A', 'B', 'C', 'D'];
-            
-            // Para criar um visual misturado
             const baseArray = [];
-            for(let i=0; i<popSize; i++) {
-                baseArray.push(colors[Math.floor(i / 25)]);
-            }
-            // Embaralha o array base para distribuir visualmente no grid
+            for(let i=0; i<100; i++) baseArray.push(colors[Math.floor(i / 25)]);
             baseArray.sort(() => Math.random() - 0.5);
 
-            for (let i = 0; i < popSize; i++) {
+            for (let i = 0; i < 100; i++) {
                 const type = baseArray[i];
-                
                 const dot = document.createElement('div');
                 dot.className = `dot color-${type}`;
                 dot.id = `pop-dot-${i}`;
-                
                 grid.appendChild(dot);
-                
-                population.push({
-                    id: i,
-                    type: type,
-                    element: dot
-                });
+                population.push({ id: i, type: type, element: dot });
             }
         }
 
-        // Funções de Ajuste (Slider e Botão)
         function updateSampleSize(value) {
             sampleSize = parseInt(value);
             document.getElementById('sample-size-display').innerText = sampleSize;
@@ -487,206 +477,119 @@
             resetVisuals();
         }
 
-        function shufflePopulation() {
-            generatePopulation();
-            resetVisuals();
-            
-            // Feedback visual no botão
-            const btn = document.querySelector('button[onclick="shufflePopulation()"]');
-            const originalHtml = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check text-emerald-500"></i> Misturado!';
-            btn.classList.add('bg-emerald-50', 'border-emerald-200');
-            
-            setTimeout(() => {
-                btn.innerHTML = originalHtml;
-                btn.classList.remove('bg-emerald-50', 'border-emerald-200');
-            }, 1000);
-        }
-
-        // Altera Categoria (Prob vs Não Prob)
         function setCategory(cat) {
             currentCategory = cat;
-            
-            // Atualiza Botões Categoria
             const btnProb = document.getElementById('btn-cat-prob');
             const btnNonProb = document.getElementById('btn-cat-nonprob');
-            
             if (cat === 'probabilistic') {
-                btnProb.className = "flex-1 py-2 px-3 bg-indigo-600 text-white rounded-lg text-sm font-medium transition-colors w-full";
-                btnNonProb.className = "flex-1 py-2 px-3 bg-slate-200 text-slate-700 hover:bg-slate-300 rounded-lg text-sm font-medium transition-colors w-full";
+                btnProb.className = "flex-1 py-2 px-3 bg-indigo-600 text-white rounded-lg text-sm font-medium w-full";
+                btnNonProb.className = "flex-1 py-2 px-3 bg-slate-200 text-slate-700 rounded-lg text-sm font-medium w-full";
             } else {
-                btnNonProb.className = "flex-1 py-2 px-3 bg-slate-700 text-white rounded-lg text-sm font-medium transition-colors w-full";
-                btnProb.className = "flex-1 py-2 px-3 bg-slate-200 text-slate-700 hover:bg-slate-300 rounded-lg text-sm font-medium transition-colors w-full";
+                btnNonProb.className = "flex-1 py-2 px-3 bg-slate-700 text-white rounded-lg text-sm font-medium w-full";
+                btnProb.className = "flex-1 py-2 px-3 bg-slate-200 text-slate-700 rounded-lg text-sm font-medium w-full";
             }
-
             renderSubtypes();
         }
 
-        // Renderiza botões de subtipos baseados na categoria
         function renderSubtypes() {
             const container = document.getElementById('subtypes-container');
             container.innerHTML = '';
             const subtypes = methodsData[currentCategory].subtypes;
-            
             subtypes.forEach((sub, index) => {
                 const btn = document.createElement('button');
                 btn.innerText = sub.name;
-                btn.className = `py-2 px-2 rounded border text-sm font-medium transition-colors ${index === 0 ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`;
+                btn.className = `py-2 px-2 rounded border text-sm font-medium transition-colors ${index === 0 ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-200 text-slate-600'}`;
                 btn.onclick = () => selectSubtype(sub.id, btn);
                 container.appendChild(btn);
             });
-            
-            // Auto seleciona o primeiro
             selectSubtype(subtypes[0].id, container.children[0]);
         }
 
-        // Seleciona o método específico
         function selectSubtype(id, btnElement) {
             currentSubtypeId = id;
-            
-            // Atualiza visual dos botões de subtipo
             const container = document.getElementById('subtypes-container');
-            Array.from(container.children).forEach(btn => {
-                btn.className = 'py-2 px-2 rounded border text-sm font-medium transition-colors bg-white border-slate-200 text-slate-600 hover:bg-slate-50';
-            });
-            btnElement.className = 'py-2 px-2 rounded border text-sm font-medium transition-colors bg-indigo-50 border-indigo-200 text-indigo-700';
+            Array.from(container.children).forEach(btn => btn.className = 'py-2 px-2 rounded border text-sm font-medium bg-white border-slate-200 text-slate-600');
+            btnElement.className = 'py-2 px-2 rounded border text-sm font-medium bg-indigo-50 border-indigo-200 text-indigo-700';
 
-            // Busca os dados
-            const subtypeData = methodsData[currentCategory].subtypes.find(s => s.id === id);
+            const data = methodsData[currentCategory].subtypes.find(s => s.id === id);
+            document.getElementById('info-name').innerText = data.name;
+            document.getElementById('info-synonyms').innerText = data.synonyms;
+            document.getElementById('info-desc').innerText = data.desc;
+            document.getElementById('info-pain').innerText = data.pain;
             
-            // Atualiza Textos
-            document.getElementById('info-name').innerText = subtypeData.name;
-            document.getElementById('info-synonyms').innerText = subtypeData.synonyms;
-            document.getElementById('info-desc').innerText = subtypeData.desc;
-            document.getElementById('info-pain').innerText = subtypeData.pain;
+            // Atualiza Card de Redação
+            document.getElementById('writer-method-name').innerText = data.name;
+            document.getElementById('writer-text-what').innerText = data.writing.what;
+            document.getElementById('writer-text-why').innerText = data.writing.why;
 
-            // Reseta visualização
             resetVisuals();
         }
 
         function resetVisuals() {
-            population.forEach(p => {
-                p.element.classList.remove('dimmed', 'selected');
-            });
-            document.getElementById('sample-grid').innerHTML = '<div class="absolute inset-0 flex items-center justify-center text-slate-400 text-sm text-center p-4" id="sample-placeholder">Clique em "Executar Amostragem" para ver os indivíduos selecionados.</div>';
+            population.forEach(p => p.element.classList.remove('dimmed', 'selected'));
+            document.getElementById('sample-grid').innerHTML = '<div class="absolute inset-0 flex items-center justify-center text-slate-400 text-sm text-center p-4" id="sample-placeholder">Aguardando execução...</div>';
             document.getElementById('diagnostics-panel').classList.add('hidden');
         }
 
-        // ALGORITMOS DE AMOSTRAGEM
         function executeSampling() {
             resetVisuals();
             document.getElementById('sample-placeholder')?.remove();
-            
             let sampledIds = [];
 
             if (currentCategory === 'probabilistic') {
                 if (currentSubtypeId === 'simple') {
-                    // Aleatória Simples
-                    let indices = Array.from({length: popSize}, (_, i) => i);
+                    let indices = Array.from({length: 100}, (_, i) => i);
                     indices.sort(() => Math.random() - 0.5);
                     sampledIds = indices.slice(0, sampleSize);
-                } 
-                else if (currentSubtypeId === 'systematic') {
-                    // Sistemática (k dinâmico baseado no tamanho da amostra)
-                    let k = Math.floor(popSize / sampleSize);
+                } else if (currentSubtypeId === 'systematic') {
+                    let k = Math.floor(100 / sampleSize);
                     let start = Math.floor(Math.random() * k);
-                    for (let i = start; i < popSize; i += k) {
-                        if (sampledIds.length < sampleSize) sampledIds.push(i);
-                    }
-                }
-                else if (currentSubtypeId === 'stratified') {
-                    // Estratificada (Tenta pegar partes iguais de cada grupo)
-                    const types = ['A', 'B', 'C', 'D'];
-                    let perGroup = Math.floor(sampleSize / 4);
-                    types.forEach(t => {
-                        let filtered = population.filter(p => p.type === t);
-                        filtered.sort(() => Math.random() - 0.5);
-                        let selected = filtered.slice(0, perGroup).map(p => p.id);
-                        sampledIds = sampledIds.concat(selected);
+                    for (let i = start; i < 100; i += k) if (sampledIds.length < sampleSize) sampledIds.push(i);
+                } else if (currentSubtypeId === 'stratified') {
+                    ['A', 'B', 'C', 'D'].forEach(t => {
+                        let f = population.filter(p => p.type === t).sort(() => Math.random() - 0.5);
+                        sampledIds = sampledIds.concat(f.slice(0, Math.floor(sampleSize / 4)).map(p => p.id));
                     });
-                }
-                else if (currentSubtypeId === 'cluster') {
-                    // Conglomerados (Pega blocos contínuos até bater a amostra)
-                    let clusterSize = Math.floor(sampleSize / 2); // Pega 2 grandes blocos
-                    let clustersStarts = [];
-                    for(let i=0; i<popSize; i+=clusterSize) {
-                        if(i + clusterSize <= popSize) clustersStarts.push(i);
-                    }
-                    clustersStarts.sort(() => Math.random() - 0.5);
-                    let selectedStarts = clustersStarts.slice(0, 2);
-                    selectedStarts.forEach(start => {
-                        for(let i=start; i<start+clusterSize; i++) {
-                            if(sampledIds.length < sampleSize) sampledIds.push(i);
-                        }
-                    });
+                } else if (currentSubtypeId === 'cluster') {
+                    let start = Math.floor(Math.random() * (100 - sampleSize));
+                    for(let i=start; i<start+sampleSize; i++) sampledIds.push(i);
                 }
             } else {
-                if (currentSubtypeId === 'convenience') {
-                    // Conveniência (pega os primeiros fisicamente no grid)
-                    sampledIds = Array.from({length: sampleSize}, (_, i) => i);
-                }
-                else if (currentSubtypeId === 'purposive') {
-                    // Intencional (Vai procurar apenas por características vermelhas e azuis, ignorando resto)
-                    let biasedPool = population.filter(p => p.type === 'A' || p.type === 'B');
-                    // Pega os primeiros do pool
-                    sampledIds = biasedPool.slice(0, sampleSize).map(p => p.id);
-                }
+                if (currentSubtypeId === 'convenience') sampledIds = Array.from({length: sampleSize}, (_, i) => i);
+                else if (currentSubtypeId === 'purposive') sampledIds = population.filter(p => p.type === 'A' || p.type === 'B').slice(0, sampleSize).map(p => p.id);
                 else if (currentSubtypeId === 'quota') {
-                    // Cotas (Busca bater as cotas pegando sempre os primeiros que aparecem, sem aleatoriedade)
                     let counts = {A:0, B:0, C:0, D:0};
-                    let perGroup = Math.floor(sampleSize / 4);
-                    for(let i=0; i<popSize; i++) {
-                        let type = population[i].type;
-                        if(counts[type] < perGroup) {
-                            sampledIds.push(i);
-                            counts[type]++;
+                    population.forEach((p, i) => {
+                        if(counts[p.type] < Math.floor(sampleSize/4) && sampledIds.length < sampleSize) {
+                            sampledIds.push(i); counts[p.type]++;
                         }
-                        if(sampledIds.length === sampleSize) break;
-                    }
-                }
-                else if (currentSubtypeId === 'snowball') {
-                    // Bola de neve (Pega um inicial e vai pegando vizinhos)
-                    let center = Math.floor(Math.random() * (popSize - sampleSize)); 
-                    for(let i=center; i<center+sampleSize; i++) {
-                        sampledIds.push(i);
-                    }
+                    });
+                } else if (currentSubtypeId === 'snowball') {
+                    let start = Math.floor(Math.random() * (100 - sampleSize));
+                    for(let i=start; i<start+sampleSize; i++) sampledIds.push(i);
                 }
             }
-
             animateSampling(sampledIds);
         }
 
         function animateSampling(sampledIds) {
-            const sampleGrid = document.getElementById('sample-grid');
+            const grid = document.getElementById('sample-grid');
             let counts = {A:0, B:0, C:0, D:0};
-
-            // Escurece os não selecionados na população
             population.forEach(p => {
-                if (!sampledIds.includes(p.id)) {
-                    p.element.classList.add('dimmed');
-                } else {
-                    p.element.classList.add('selected');
-                }
+                if (sampledIds.includes(p.id)) p.element.classList.add('selected');
+                else p.element.classList.add('dimmed');
             });
 
-            // Adiciona um por um com delay na caixa de amostra
             sampledIds.forEach((id, index) => {
                 setTimeout(() => {
-                    const popItem = population[id];
-                    counts[popItem.type]++;
-                    
+                    const p = population[id];
+                    counts[p.type]++;
                     const dot = document.createElement('div');
-                    dot.className = `dot color-${popItem.type} animate-pop`;
-                    // Aumentar um pouco na area de amostra para ver melhor
-                    dot.style.width = '16px';
-                    dot.style.height = '16px';
-                    sampleGrid.appendChild(dot);
-
-                    // Quando terminar, calcular diagnostico
-                    if (index === sampledIds.length - 1) {
-                        setTimeout(() => calculateDiagnostics(counts), 500);
-                    }
-                }, index * 50); // delay de 50ms por bolinha
+                    dot.className = `dot color-${p.type} animate-pop`;
+                    dot.style.width = '16px'; dot.style.height = '16px';
+                    grid.appendChild(dot);
+                    if (index === sampledIds.length - 1) setTimeout(() => calculateDiagnostics(counts), 500);
+                }, index * 40);
             });
         }
 
@@ -694,140 +597,72 @@
             const panel = document.getElementById('diagnostics-panel');
             const bar = document.getElementById('distribution-bar');
             const msg = document.getElementById('diagnostics-message');
-            const tableBody = document.getElementById('comparison-table-body');
-            
-            bar.innerHTML = '';
-            tableBody.innerHTML = '';
+            const tbody = document.getElementById('comparison-table-body');
             panel.classList.remove('hidden');
+            bar.innerHTML = ''; tbody.innerHTML = '';
+            
+            const colors = { A: '#ef4444', B: '#3b82f6', C: '#10b981', D: '#f59e0b' };
+            const names = { A: 'Vermelho', B: 'Azul', C: 'Verde', D: 'Amarelo' };
+            let missing = 0;
 
-            const total = sampleSize;
-            const colorsMap = {
-                A: {hex: '#ef4444', name: 'Vermelho'},
-                B: {hex: '#3b82f6', name: 'Azul'},
-                C: {hex: '#10b981', name: 'Verde'},
-                D: {hex: '#f59e0b', name: 'Amarelo'}
-            };
-
-            let missingGroups = 0;
-            let overrepresentedGroups = 0;
-
-            Object.keys(counts).forEach(key => {
-                let count = counts[key];
-                let percent = (count / total) * 100;
-                
-                if(count === 0) missingGroups++;
-                if(percent > 40) overrepresentedGroups++; // Ideal seria em torno de 25%
-
-                // Barra colorida
-                if(percent > 0) {
-                    const div = document.createElement('div');
-                    div.style.width = `${percent}%`;
-                    div.style.backgroundColor = colorsMap[key].hex;
-                    div.title = `${colorsMap[key].name}: ${count}`;
-                    bar.appendChild(div);
+            Object.keys(counts).forEach(k => {
+                let p = (counts[k] / sampleSize) * 100;
+                if(counts[k] === 0) missing++;
+                if(p > 0) {
+                    const d = document.createElement('div');
+                    d.style.width = `${p}%`; d.style.backgroundColor = colors[k];
+                    bar.appendChild(d);
                 }
-                
-                // Preencher tabela
-                let isDistorced = Math.abs(percent - 25) > 15; // Margem de tolerância visual
-                let textClass = isDistorced ? 'text-red-600 font-bold' : 'text-slate-700';
-                
-                tableBody.innerHTML += `
-                    <tr class="border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors">
-                        <td class="px-3 py-2 flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full shadow-sm" style="background-color: ${colorsMap[key].hex}"></span>
-                            ${colorsMap[key].name}
-                        </td>
-                        <td class="px-3 py-2 font-mono text-slate-500">25%</td>
-                        <td class="px-3 py-2 font-mono ${textClass}">${percent.toFixed(0)}%</td>
-                    </tr>
-                `;
+                tbody.innerHTML += `<tr class="border-b border-slate-100 last:border-0">
+                    <td class="px-3 py-2 flex items-center gap-2"><span class="w-2 h-2 rounded-full" style="background-color:${colors[k]}"></span> ${names[k]}</td>
+                    <td class="px-3 py-2 font-mono text-slate-400">25%</td>
+                    <td class="px-3 py-2 font-mono ${Math.abs(p-25) > 15 ? 'text-red-500 font-bold' : ''}">${p.toFixed(0)}%</td>
+                </tr>`;
             });
 
-            // Lógica de avaliação didática (Baseada na "Dor" e "Interferência")
-            if (missingGroups > 0 || overrepresentedGroups > 1) {
-                panel.className = "bg-red-50 p-4 rounded-xl shadow-sm border border-red-200 mt-4 animate-pop";
-                msg.innerHTML = `<strong><i class="fas fa-times-circle text-red-600"></i> Amostra Viesada! (Erro de Generalização)</strong><br>
-                               <span class="text-red-700 font-normal">A amostra não representa a diversidade da população original. Tentar gerar resultados com esta amostra levará a conclusões falsas.</span>`;
-            } else if (currentCategory === 'non-probabilistic' && missingGroups === 0) {
-                panel.className = "bg-amber-50 p-4 rounded-xl shadow-sm border border-amber-200 mt-4 animate-pop";
-                msg.innerHTML = `<strong><i class="fas fa-exclamation-triangle text-amber-600"></i> Pareceu bom, mas cuidado!</strong><br>
-                               <span class="text-amber-800 font-normal">As proporções bateram, mas como o método não utilizou sorteio aleatório, características invisíveis podem estar distorcidas.</span>`;
+            if (missing > 0) {
+                panel.className = "bg-red-50 p-4 rounded-xl border border-red-200 mt-4";
+                msg.innerHTML = `<i class="fas fa-times-circle text-red-600"></i> <strong>Amostra Viesada!</strong> O erro de generalização é alto.`;
             } else {
-                panel.className = "bg-emerald-50 p-4 rounded-xl shadow-sm border border-emerald-200 mt-4 animate-pop";
-                msg.innerHTML = `<strong><i class="fas fa-check-circle text-emerald-600"></i> Boa Representatividade!</strong><br>
-                               <span class="text-emerald-700 font-normal">A amostra capturou de forma equilibrada a diversidade da população total. É segura para inferências.</span>`;
+                panel.className = "bg-emerald-50 p-4 rounded-xl border border-emerald-200 mt-4";
+                msg.innerHTML = `<i class="fas fa-check-circle text-emerald-600"></i> <strong>Representatividade Aceitável.</strong>`;
             }
         }
 
-        // Sistema de Ajuda (Modal)
-        const helpContent = {
-            'categories': {
-                title: '<i class="fas fa-filter text-indigo-500"></i> Categorias',
-                text: 'Aqui você escolhe a abordagem principal. A amostragem <strong>Probabilística</strong> usa a matemática para garantir representatividade. A <strong>Não Probabilística</strong> depende do julgamento ou conveniência do pesquisador.'
-            },
-            'methods': {
-                title: '<i class="fas fa-list-ul text-indigo-500"></i> Métodos',
-                text: 'Selecione uma técnica específica para ler sua definição teórica, conhecer as sinonímias e entender o principal viés ou dor associada a esta escolha metodológica.'
-            },
-            'settings': {
-                title: '<i class="fas fa-sliders-h text-slate-500"></i> Ajustes da Simulação',
-                text: 'Deslize a barra para mudar a quantidade de pessoas extraídas. O botão "Embaralhar" reorganiza os indivíduos no quadro provando como as técnicas sem sorteio são altamente dependentes da posição das pessoas.'
-            },
-            'population': {
-                title: '<i class="fas fa-users text-blue-500"></i> População Total',
-                text: 'Este quadro representa o universo completo da sua pesquisa (100 indivíduos) dividido visualmente em 4 características iguais (25% cada). O objetivo de uma boa amostra é refletir exatamente essa diversidade.'
-            },
-            'sample': {
-                title: '<i class="fas fa-crosshairs text-emerald-500"></i> Amostra Resultante',
-                text: 'Esta área mostrará os indivíduos que a técnica de amostragem que você escolheu conseguiu capturar. Repare que algumas técnicas formam grupos visualmente distorcidos (viesados).'
-            },
-            'diagnosis': {
-                title: '<i class="fas fa-stethoscope text-slate-600"></i> Diagnóstico',
-                text: 'Este termômetro faz uma avaliação automática. Ele compara as proporções da amostra com a população original e alerta imediatamente se você está correndo risco de cometer um erro de generalização.'
-            }
-        };
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            // Notificação visual simples
+            const btn = event.currentTarget;
+            const icon = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check text-emerald-500"></i>';
+            setTimeout(() => btn.innerHTML = icon, 2000);
+        }
 
-        function openHelp(topic) {
-            document.getElementById('help-title').innerHTML = helpContent[topic].title;
-            document.getElementById('help-content').innerHTML = helpContent[topic].text;
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('theme-icon');
+            icon.className = document.documentElement.classList.contains('dark') ? 'fas fa-sun text-xl text-amber-500' : 'fas fa-moon text-xl text-slate-500';
+        }
+
+        function shufflePopulation() { generatePopulation(); resetVisuals(); }
+        function openHelp(t) { 
+            const help = {
+                'categories': { title: 'Categorias', text: 'A amostragem <strong>Probabilística</strong> usa sorteio matemático. A <strong>Não Probabilística</strong> depende de critérios do pesquisador.' }
+            };
+            document.getElementById('help-title').innerText = help[t].title;
+            document.getElementById('help-content').innerHTML = help[t].text;
             document.getElementById('help-modal').classList.remove('hidden');
         }
+        function closeHelp() { document.getElementById('help-modal').classList.add('hidden'); }
 
-        function closeHelp() {
-            document.getElementById('help-modal').classList.add('hidden');
-        }
-
-        // Sistema de Tema (Claro/Escuro)
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            html.classList.toggle('dark');
-            
-            if (html.classList.contains('dark')) {
-                icon.className = 'fas fa-sun text-xl text-amber-500';
-                localStorage.theme = 'dark';
-            } else {
-                icon.className = 'fas fa-moon text-xl text-slate-500';
-                localStorage.theme = 'light';
-            }
-        }
-
-        // Verifica a preferência guardada ou do sistema no arranque
-        function initTheme() {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                const icon = document.getElementById('theme-icon');
-                if (icon) {
-                    icon.className = 'fas fa-sun text-xl text-amber-500';
-                }
-            }
-        }
-
-        // Executar funções no carregamento
-        window.onload = () => {
-            initTheme();
-            init();
-        };
+        window.onload = init;
     </script>
 </body>
 </html>
